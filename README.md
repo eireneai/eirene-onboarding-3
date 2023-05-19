@@ -73,6 +73,12 @@ View the `docker/docker-compose.dev.yml` for details of how the services are wir
 
 Run `nx serve (api|newsletter|ui) --configuration=(stub|development|production)` to start a particular app with a particular configuration
 
+## Effect-ts
+
+View the overview of the library: https://youtu.be/zrNr3JVUc8I
+
+Documentation is extremely limited - however it is a port of scala ZIO so you can refer to that for a conceptual understanding, but unfortunately the syntax of scala is quite different to typescript. 
+
 ## Projections
 
 In practice, projections aren't usually a class that you instantiate like in the first project. We'll maintain our projections in the database best suited to the shape of the projection. Redis is used for keeping the list of titles for the newsletter service. Mongo is used for keeping the collection of Todos for the ui service.
