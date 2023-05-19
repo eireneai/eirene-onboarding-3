@@ -19,7 +19,7 @@ This project is designed to introduce the following:
 
 ## Overview
 
-This is a distributed todo app - three seperate services come together to create a mock version of a system that might be 
+This is a distributed todo app - three seperate services come together to create a system that might be 
 deployed to the cloud. We'll use the effect-ts library and algebraic datatypes to leverage the typescript type system to the maximum - every feature of typescript will utilized to verify the correctness of the application.
 
 These services are the three apps in the `apps` folder:
@@ -84,8 +84,9 @@ Here are the recommended steps for completing the project:
 3) Use the schema library to model the `TodoAdded` event in `libs/model/src/lib/todo-added.ts`
 4) Learn about development dependencies by completing the implementation of `InmemoryTitlePersistence` in `libs/infra/inmemory/src/lib/title-persistence.impl.ts`
 5) Learn about handling messages from a subscription by completing the `saveTitles` effect in `apps/newsletter/src/app/app.ts` You should be able to run the applications in development mode now by running `npm run docker:dev`
-6) Learn about the difference between live and development dependencies by completing the implementation of `MongoTodoPersistence` in `libs/infra/mongo/src/lib/todo-persistence.impl.ts`
-7) When all tests pass, run the complete application with `npm run docker:prod` and watch the system go! 
+6) Try sending some http requests,  `POST http://localhost:8080/todos` to create a todo, `PUT http://localhost:8080/todos/:todoId` to mark it as done, and `DELETE http://localhost:8080/todos/:todoId` to remove it.
+7) Learn about the difference between live and development dependencies by completing the implementation of `MongoTodoPersistence` in `libs/infra/mongo/src/lib/todo-persistence.impl.ts`. Since it needs a real mongo instance, you'll need to test it with docker. Use `npm run docker:spec`.
+8) When all tests pass, run the complete application with `npm run docker:prod` and send the same http request from step 6. 
 
 ## Conclusion
 
