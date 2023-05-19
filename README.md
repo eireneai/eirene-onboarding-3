@@ -81,7 +81,7 @@ In practice, projections aren't usually a class that you instantiate like in the
 
 To complete this project, fill in the gaps in implementation of this system. Anywhere you see the `NotImplemented` effect or a throw `NotImplemented` statement, provide an implementation. Typescript type definitions, code comments, and unit tests are provided for every function you need to implement. 
 
-The longest block of code you will need to write should be around 20 lines, but many functions will only require you to write a few lines. Focus on understanding the concepts introduced and use the type definitions and unit tests to guide you.
+The longest block of code you will need to write should be around 30 lines, but many functions will only require you to write a few lines. Focus on understanding the concepts introduced and use the type definitions and unit tests to guide you.
 
 Here are the recommended steps for completing the project:
 
