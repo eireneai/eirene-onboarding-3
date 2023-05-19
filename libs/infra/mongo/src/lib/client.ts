@@ -11,12 +11,7 @@ export interface MongoClient {
 
 export const MongoClient = tag<MongoClient>()
 
-export interface MongoConfig {
-  port: number
-  host: string
-}
-
-const makeLive = (uri: string) =>
+export const LiveMongoClient = (uri: string) =>
   pipe(
     T.promise(() =>
       new mongo.MongoClient(uri, {
@@ -24,10 +19,9 @@ const makeLive = (uri: string) =>
       }).connect()
     ),
     M.make((client) => T.promise(() => client.close())),
-    M.map((client): MongoClient => ({ client }))
+    M.map((client): MongoClient => ({ client })),
+    L.fromManaged(MongoClient)
   )
-
-export const LiveMongoClient = flow(makeLive, L.fromManaged(MongoClient))
 
 export const accessMongoClient = T.accessService(MongoClient)
 export const accessMongoClientM = T.accessServiceM(MongoClient)
