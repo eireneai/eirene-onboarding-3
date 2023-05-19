@@ -21,6 +21,8 @@ export interface MongoTodoPeristenceConfig {
   collection: string
 }
 
+// TODO:
+// Implement MongoTodoPersistence according to spec
 export const MongoTodoPersistence = (config: MongoTodoPeristenceConfig) =>
   pipe(
     accessMongoClient((mongo) =>
