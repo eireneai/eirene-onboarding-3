@@ -1,0 +1,35 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "strict": true,
+    "sourceMap": true,
+    "declaration": false,
+    "noErrorTruncation": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@eirene-onboarding-3/core": ["libs/core/src/index.ts"],
+      "@eirene-onboarding-3/infra/bson": ["libs/infra/bson/src/index.ts"],
+      "@eirene-onboarding-3/infra/console": ["libs/infra/console/src/index.ts"],
+      "@eirene-onboarding-3/infra/date": ["libs/infra/date/src/index.ts"],
+      "@eirene-onboarding-3/infra/inmemory": [
+        "libs/infra/inmemory/src/index.ts"
+      ],
+      "@eirene-onboarding-3/infra/mongo": ["libs/infra/mongo/src/index.ts"],
+      "@eirene-onboarding-3/infra/nanoid": ["libs/infra/nanoid/src/index.ts"],
+      "@eirene-onboarding-3/infra/redis": ["libs/infra/redis/src/index.ts"],
+      "@eirene-onboarding-3/infra/stub": ["libs/infra/stub/src/index.ts"],
+      "@eirene-onboarding-3/model": ["libs/model/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

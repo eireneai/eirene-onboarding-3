@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  nx:
+    build:
+      dockerfile: ./nx/Dockerfile
+    volumes:
+      - ../:/workspace

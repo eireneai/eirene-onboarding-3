@@ -1,0 +1,88 @@
+{
+  "name": "ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ui/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/ui",
+        "main": "apps/ui/src/main.ts",
+        "tsConfig": "apps/ui/tsconfig.app.json",
+        "assets": ["apps/ui/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/ui/webpack.config.js"
+      },
+      "configurations": {
+        "stub": {
+          "fileReplacements": [
+            {
+              "replace": "apps/ui/src/environments/environment.ts",
+              "with": "apps/ui/src/environments/environment.stub.ts"
+            }
+          ]
+        },
+        "development": {},
+        "production": {
+          "generateLockfile": true,
+          "generatePackageJson": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/ui/src/environments/environment.ts",
+              "with": "apps/ui/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ui:build"
+      },
+      "configurations": {
+        "stub": {
+          "buildTarget": "ui:build:stub"
+        },
+        "development": {
+          "buildTarget": "ui:build:development"
+        },
+        "production": {
+          "buildTarget": "ui:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ui/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ui/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/ui/Dockerfile . -t ui"
+    }
+  },
+  "tags": []
+}

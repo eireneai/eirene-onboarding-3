@@ -1,0 +1,88 @@
+{
+  "name": "newsletter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/newsletter/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/newsletter",
+        "main": "apps/newsletter/src/main.ts",
+        "tsConfig": "apps/newsletter/tsconfig.app.json",
+        "assets": ["apps/newsletter/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/newsletter/webpack.config.js"
+      },
+      "configurations": {
+        "stub": {
+          "fileReplacements": [
+            {
+              "replace": "apps/newsletter/src/environments/environment.ts",
+              "with": "apps/newsletter/src/environments/environment.stub.ts"
+            }
+          ]
+        },
+        "development": {},
+        "production": {
+          "generateLockfile": true,
+          "generatePackageJson": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/newsletter/src/environments/environment.ts",
+              "with": "apps/newsletter/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "newsletter:build"
+      },
+      "configurations": {
+        "stub": {
+          "buildTarget": "newsletter:build:stub"
+        },
+        "development": {
+          "buildTarget": "newsletter:build:development"
+        },
+        "production": {
+          "buildTarget": "newsletter:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/newsletter/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/newsletter/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/newsletter/Dockerfile . -t newsletter"
+    }
+  },
+  "tags": []
+}

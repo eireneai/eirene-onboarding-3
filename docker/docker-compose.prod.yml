@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  api:
+    build:
+      dockerfile: ../../../apps/api/Dockerfile
+      context: ../dist/apps/api
+    ports:
+      - 8080:8080
+    environment:
+      - EXPRESS_HOST=0.0.0.0
+      - EXPRESS_PORT=8080
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+  newsletter:
+    build:
+      dockerfile: ../../../apps/newsletter/Dockerfile
+      context: ../dist/apps/newsletter
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+  ui:
+    build:
+      dockerfile: ../../../apps/ui/Dockerfile
+      context: ../dist/apps/ui
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+    depends_on:
+      - redis
+      - mongo
+  redis:
+    image: 'redis:alpine'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 6379:6379
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
