@@ -28,7 +28,13 @@ These services are the three apps in the `apps` folder:
 2) Web API: Allow users to add, update and remove todos by sending requests to an API 
 3) Newsletter: Increases engagement by periodically sending an email that lists the titles of recently added todos 
 
-These three services will communicate asynchronously via pubsub. The web API will publish events to redis pubsub and the other two services must update their own databases in response.
+These three services will communicate asynchronously via pubsub. The web API will publish events to redis pubsub and the other two services must update their own databases in response. 
+
+These services will depend on several libraries as shown:
+
+<p align="center">
+  <img src="dep-graph.PNG">
+</p>
 
 ## Ports and Adapters
 
