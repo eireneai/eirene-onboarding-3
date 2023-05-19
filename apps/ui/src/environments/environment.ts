@@ -8,7 +8,6 @@ import {
   RedisPubsubSubscription,
 } from '@eirene-onboarding-3/infra/redis'
 import { ConsoleLogger } from '@eirene-onboarding-3/infra/console'
-import { DateTimestampGenerator } from '@eirene-onboarding-3/infra/date'
 import { InmemoryTodoPersistence } from '@eirene-onboarding-3/infra/inmemory'
 
 const todo = new Todo({

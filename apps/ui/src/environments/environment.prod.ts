@@ -1,18 +1,15 @@
 import * as L from '@effect-ts/core/Effect/Layer'
 import { pipe } from '@effect-ts/core/Function'
 
-import { NanoidIdGenerator } from '@eirene-onboarding-3/infra/nanoid'
-import { DateTimestampGenerator } from '@eirene-onboarding-3/infra/date'
 import {
   LiveRedisClient,
   RedisPubsubSubscription,
-  RedisTitlePersistence,
 } from '@eirene-onboarding-3/infra/redis'
-import { ConsoleLogger } from '@eirene-onboarding-3/infra/console'
 import {
   MongoTodoPersistence,
   LiveMongoClient,
 } from '@eirene-onboarding-3/infra/mongo'
+import { ConsoleLogger } from '@eirene-onboarding-3/infra/console'
 
 import type { Environment } from './environment'
 
