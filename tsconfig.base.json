@@ -25,7 +25,6 @@
         "libs/infra/inmemory/src/index.ts"
       ],
       "@eirene-onboarding-3/infra/mongo": ["libs/infra/mongo/src/index.ts"],
-      "@eirene-onboarding-3/infra/nanoid": ["libs/infra/nanoid/src/index.ts"],
       "@eirene-onboarding-3/infra/redis": ["libs/infra/redis/src/index.ts"],
       "@eirene-onboarding-3/infra/stub": ["libs/infra/stub/src/index.ts"],
       "@eirene-onboarding-3/model": ["libs/model/src/index.ts"]
