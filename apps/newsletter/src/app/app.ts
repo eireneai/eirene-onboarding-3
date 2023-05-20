@@ -30,16 +30,18 @@ const sendNewsletter = pipe(
   T.forever
 )
 
-// TODO:
-// complete the handleTodoEvent function - it is very similar
-// to the reducer function from the first project
-
 const handleTodoEvent = matchTodoEventM({
   TodoAdded: (event) => saveTitle(event.payload.title),
   TodoDone: () => T.unit,
   TodoRemoved: () => T.unit,
 })
 
+
+// TODO:
+// complete the saveTitles function - it is very similar to the
+// reducer function from the first project. It must parse the 
+// message to an event, then use the handleTodoEvent function
+// to apply a change to the state of the persistence layer
 export const saveTitles = handleMessages((message) => NotImplemented)
 
 export const app = T.tuplePar(sendNewsletter, saveTitles)
